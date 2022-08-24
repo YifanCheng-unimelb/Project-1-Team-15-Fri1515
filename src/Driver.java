@@ -1,6 +1,5 @@
 package src;
 
-import ch.aplu.jgamegrid.Actor;
 import src.utility.PropertiesLoader;
 
 import java.awt.*;

@@ -2,12 +2,12 @@ package src;// Tetris.java
 
 import ch.aplu.jgamegrid.*;
 
-import java.security.Key;
-import java.util.*;
-import java.awt.event.KeyEvent;
-import java.awt.*;
-import java.util.List;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.Properties;
+import java.util.Random;
 
 public class Tetris extends JFrame implements GGActListener {
 

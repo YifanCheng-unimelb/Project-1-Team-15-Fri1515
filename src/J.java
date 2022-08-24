@@ -1,9 +1,9 @@
 // J.java
 package src;
+
 import ch.aplu.jgamegrid.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 class J extends Actor
 {
