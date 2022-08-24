@@ -1,5 +1,6 @@
 package src;
 
+import ch.aplu.jgamegrid.*;
 import src.utility.PropertiesLoader;
 
 import java.awt.*;
