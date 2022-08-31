@@ -1,20 +1,27 @@
 // I.java
 package src;
 
-import ch.aplu.jgamegrid.*;
-
-import java.util.ArrayList;
-
-class I extends Actor
+import ch.aplu.jgamegrid.Location;
+/**
+ * @Author Mingyue Jiang
+ * @Date 2022 2022/8/30
+ * @Version 1.0
+ */
+class I extends Parent
 {
   private final int blockId = 0;
   private final String blockName = "I";
+  //7个不同形状类的初始化出现位置坐标
   private Location[][] r = new Location[4][4];
+
+  private int rotId = 0;
 
   I(Tetris tetris)
   {
     super();
     this.tetris = tetris;
+    //构造中以下代码为7个不同形状类的初始化出现位置坐标
+    //注意，他这个地方和常规认知时相反的，
     // rotId 0
     r[0][0] = new Location(new Location(-1, 0));
     r[1][0] = new Location(new Location(0, 0));
@@ -43,10 +50,8 @@ class I extends Actor
   public String toString() {
     return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;
   }
-
-  protected Tetris tetris;
+  /*protected Tetris tetris;
   private boolean isStarting = true;
-  private int rotId = 0;
   private int nb;
   protected ArrayList<TetroBlock> blocks = new ArrayList<TetroBlock>();
   private Actor nextTetrisBlock = null;
@@ -270,5 +275,5 @@ class I extends Actor
     for (TetroBlock a : blocks)
       a.removeSelf();
   }
-
+*/
 }
