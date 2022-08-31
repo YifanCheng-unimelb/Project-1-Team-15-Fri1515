@@ -1,15 +1,19 @@
 // J.java
 package src;
 
-import ch.aplu.jgamegrid.*;
-
-import java.util.ArrayList;
-
-class J extends Actor
+import ch.aplu.jgamegrid.Location;
+/**
+ * @Author Mingyue Jiang
+ * @Date 2022 2022/8/30
+ * @Version 1.0
+ */
+class J extends Parent
 {
   private final int blockId = 1;
   private final String blockName = "J";
+  //Location数组，用于创建4个小方格
   private Location[][] r = new Location[4][4];
+  private int rotId = 0;
 
   J(Tetris tetris)
   {
@@ -44,9 +48,10 @@ class J extends Actor
   public String toString() {
     return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;
   }
-  protected Tetris tetris;
+
+
+  /*protected Tetris tetris;
   private boolean isStarting = true;
-  private int rotId = 0;
   private int nb;
   protected ArrayList<TetroBlock> blocks = new ArrayList<TetroBlock>();
   private Actor nextTetrisBlock = null;
@@ -89,7 +94,7 @@ class J extends Actor
     }
   }
 
-  // Based on the input in the properties file, the block can move automatically
+  // Based on the input in the properties file, the block can move automatically移动+旋转
   private void autoMove() {
     String moveString = autoBlockMove.substring(autoBlockIndex, autoBlockIndex + 1);
     switch (moveString) {
@@ -110,7 +115,7 @@ class J extends Actor
     autoBlockIndex++;
   }
 
-  // Check if the block can be played automatically based on the properties file
+  // Cechk if the block can be played automatically based on the properties file
   private boolean canAutoPlay() {
     if (autoBlockMove != null && !autoBlockMove.equals("")) {
       if (autoBlockMove.length() > autoBlockIndex) {
@@ -270,4 +275,6 @@ class J extends Actor
     for (TetroBlock a : blocks)
       a.removeSelf();
   }
+*/
 }
+
