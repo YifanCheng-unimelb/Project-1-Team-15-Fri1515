@@ -1,15 +1,19 @@
 // L.java
 package src;
 
-import ch.aplu.jgamegrid.*;
-
-import java.util.ArrayList;
-
-class L extends Actor
+import ch.aplu.jgamegrid.Location;
+/**
+ * @Author Mingyue Jiang
+ * @Date 2022 2022/8/30
+ * @Version 1.0
+ */
+class L extends Parent
 {
   private final int blockId = 2;
   private Location[][] r = new Location[4][4];
   private final String blockName = "J";
+
+  private int rotId = 0;
 
   L(Tetris tetris)
   {
@@ -40,13 +44,11 @@ class L extends Actor
     for (int i = 0; i < r.length; i++)
       blocks.add(new TetroBlock(blockId, r[i]));
   }
-
   public String toString() {
     return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;
   }
-  protected Tetris tetris;
+  /*protected Tetris tetris;
   private boolean isStarting = true;
-  private int rotId = 0;
   private int nb;
   protected ArrayList<TetroBlock> blocks = new ArrayList<TetroBlock>();
   private Actor nextTetrisBlock = null;
@@ -269,5 +271,5 @@ class L extends Actor
     super.removeSelf();
     for (TetroBlock a : blocks)
       a.removeSelf();
-  }
+  }*/
 }
