@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19ea027c-f276-40a5-aa9b-06c1fc53fe25" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Project-1-Team-15-Fri1515/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project-1-Team-15-Fri1515/.idea/.name" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Project-1-Team-15-Fri1515/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project-1-Team-15-Fri1515/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Project-1-Team-15-Fri1515/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Project-1-Team-15-Fri1515/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Parent" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
