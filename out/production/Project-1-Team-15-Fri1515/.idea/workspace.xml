@@ -20,14 +20,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/CYT_3/OneDrive/桌面/SWEN30006/Project-1-Team-15-Fri1515&quot;
-  }
-}</component>
-  <component name="RunManager" selected="Application.Driver">
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager" selected="应用程序.Driver">
     <configuration name="Driver" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="src.Driver" />
       <module name="Project-1-Team-15-Fri1515" />
@@ -40,12 +38,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Driver" />
-      <item itemvalue="JAR Application.JGameGrid.jar" />
+      <item itemvalue="JAR 应用程序.JGameGrid.jar" />
+      <item itemvalue="应用程序.Driver" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JAR Application.JGameGrid.jar" />
+        <item itemvalue="JAR 应用程序.JGameGrid.jar" />
       </list>
     </recent_temporary>
   </component>
