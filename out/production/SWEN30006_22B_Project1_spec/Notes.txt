@@ -1,0 +1,14 @@
+Design issues:
+- Different shapes have extensive amount of repetition 
+	(Create e.g Shape class to inherite from; Improve readability; Reduce disk space usage)
+- Under Tetris, large amount of repetitive code
+	(Rewrite the code)
+- Redefine of variables
+	(Delete unneccessary code)
+- slowDown in Tetris is slowing down rather than accelerating
+	(Change direction of signs)
+- Logic of start button is not correct, game start without any input, currently serves the
+  purpose a restart button
+	(Change the logic of the start function)
+- Gameover is currently not centered
+	(Change position values to improve the visualisation)

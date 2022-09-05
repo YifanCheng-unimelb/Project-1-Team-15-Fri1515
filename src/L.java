@@ -11,7 +11,7 @@ class L extends Parent
 {
   private final int blockId = 2;
   private Location[][] r = new Location[4][4];
-  private final String blockName = "J";
+  private final String blockName = "L";
 
   private int rotId = 0;
 
