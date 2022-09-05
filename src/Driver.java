@@ -17,15 +17,6 @@ public class Driver {
      */
 
     public static void main(String args[]) {
-//        File statistics = new File("/Statistics.txt");
-//        if(!statistics.exists())
-//        {
-//            try {
-//                statistics.createNewFile();
-//            } catch (IOException e) {
-//            }
-//        }
-
         String propertiesPath = DEFAULT_PROPERTIES_PATH;
         System.out.println("Arrays.asList(args) = " + Arrays.asList(args));
         if (args.length > 0) {
