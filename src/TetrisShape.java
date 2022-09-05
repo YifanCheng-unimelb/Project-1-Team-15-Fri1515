@@ -6,33 +6,30 @@ import ch.aplu.jgamegrid.Location;
 
 import java.util.ArrayList;
 
-/**
- * @Author Mingyue Jiang, Yutong CHEN
- * @Date 2022 2022/8/30
- * @Version 1.0
- */
-public abstract class Parent extends Actor {
+public abstract class TetrisShape extends Actor {
 
-//    private Location[][] r = new Location[4][4];
+    protected String blockName;
+
     protected Tetris tetris;
     private boolean isStarting = true;
     private int rotId = 0;
-    private int nb;
+    private int nb = 0;
+
+
     protected ArrayList<TetroBlock> blocks = new ArrayList<TetroBlock>();
-    private Actor nextTetrisBlock = null;
-    private String autoBlockMove = "";
-    private int autoBlockIndex = 0;
+    private Actor nextTetrisBlock;
+    private String autoBlockMove;
+    private int autoBlockIndex;
 
-
-    /*public String toString() {
-        return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;
-    }*/
 
     public void setAutoBlockMove(String autoBlockMove) {
         this.autoBlockMove = autoBlockMove;
     }
 
-    // The game is called in a run loop, this method for a block is called every 1/30 seconds as the starting point
+    public String toString() {
+        return "For testing, do not change: Block: " + blockName + ". Location: " + blocks + ". Rotation: " + rotId;
+    }
+
     public void act() {
         if (isStarting) {
             for (TetroBlock a : blocks) {
@@ -61,7 +58,7 @@ public abstract class Parent extends Actor {
         }
     }
 
-    // Based on the input in the properties file, the block can move automatically移动+旋转
+    // Based on the input in the properties file, the block can move automatically
     private void autoMove() {
         String moveString = autoBlockMove.substring(autoBlockIndex, autoBlockIndex + 1);
         switch (moveString) {
@@ -78,11 +75,10 @@ public abstract class Parent extends Actor {
                 drop();
                 break;
         }
-
         autoBlockIndex++;
     }
 
-    // Cechk if the block can be played automatically based on the properties file
+    // Check if the block can be played automatically based on the properties file
     private boolean canAutoPlay() {
         if (autoBlockMove != null && !autoBlockMove.equals("")) {
             if (autoBlockMove.length() > autoBlockIndex) {
@@ -176,7 +172,6 @@ public abstract class Parent extends Actor {
                 break;
             }
         }
-
         for (TetroBlock a : blocks) {
             if (a.isRemoved())
                 continue;
@@ -196,14 +191,17 @@ public abstract class Parent extends Actor {
         return false;
     }
 
+
     // Override Actor.setDirection()
+    @Override
     public void setDirection(double dir) {
         super.setDirection(dir);
         for (TetroBlock a : blocks)
             a.setDirection(dir);
     }
 
-//     Override Actor.move()
+    // Override Actor.move()
+    @Override
     public void move() {
         if (isRemoved())
             return;
@@ -216,11 +214,10 @@ public abstract class Parent extends Actor {
     }
 
     // Override Actor.removeSelf()
+    @Override
     public void removeSelf() {
         super.removeSelf();
         for (TetroBlock a : blocks)
             a.removeSelf();
     }
 }
-
-

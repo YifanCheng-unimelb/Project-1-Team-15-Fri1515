@@ -1,14 +1,15 @@
 package src;
 
-import ch.aplu.jgamegrid.*;
 import src.utility.PropertiesLoader;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Properties;
 
 public class Driver {
-    public static final String DEFAULT_PROPERTIES_PATH = "properties/test1.properties";
+    public static final String DEFAULT_PROPERTIES_PATH = "properties/test2.properties";
 
     /**
      * Starting point
@@ -16,6 +17,15 @@ public class Driver {
      */
 
     public static void main(String args[]) {
+//        File statistics = new File("/Statistics.txt");
+//        if(!statistics.exists())
+//        {
+//            try {
+//                statistics.createNewFile();
+//            } catch (IOException e) {
+//            }
+//        }
+
         String propertiesPath = DEFAULT_PROPERTIES_PATH;
         System.out.println("Arrays.asList(args) = " + Arrays.asList(args));
         if (args.length > 0) {
@@ -23,6 +33,7 @@ public class Driver {
         }
         final Properties properties = PropertiesLoader.loadPropertiesFile(propertiesPath);
         boolean isLoggingTest = Boolean.parseBoolean(properties.getProperty("logTest", "false"));
+
         TetrisGameCallback gameCallback = new TetrisGameCallback(isLoggingTest);
         EventQueue.invokeLater(new Runnable() {
             public void run() {

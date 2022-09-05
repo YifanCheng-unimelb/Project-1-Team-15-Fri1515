@@ -1,4 +1,3 @@
-// S.java
 package src;
 
 import ch.aplu.jgamegrid.Location;

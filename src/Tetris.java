@@ -1,31 +1,44 @@
 package src;// Tetris.java
 
-import ch.aplu.jgamegrid.*;
+import ch.aplu.jgamegrid.Actor;
+import ch.aplu.jgamegrid.GGActListener;
+import ch.aplu.jgamegrid.Location;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-import java.util.Properties;
-import java.util.Random;
+import java.io.*;
+import java.util.*;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
+//俄罗斯方块主类
 public class Tetris extends JFrame implements GGActListener {
-
     private Actor currentBlock = null;  // Currently active block
     private Actor blockPreview = null;   // block in preview window
+    private int totalScore = 0;
+    private int averageScore = 0;
     private int score = 0;
+    private int roundNum = 0;
     private int slowDown = 5;
     private Random random = new Random(0);
+    private Hashtable<String, Integer> blockRecord = new Hashtable<String, Integer>();
 
     private TetrisGameCallback gameCallback;
 
     private boolean isAuto = false;
 
-    private int seed = 30006;
+    private int seed;
     // For testing mode, the block will be moved automatically based on the blockActions.
     // L is for Left, R is for Right, T is for turning (rotating), and D for down
-    private String [] blockActions = new String[10];
+    //用于存储所有方块的数组
+    private String[] blockActions = new String[10];
+    //用于存储当前方块的变量
     private int blockActionIndex = 0;
+
+    //private GameLevel gameLevel;
+
+    private String difficulty;
 
     // Initialise object
     private void initWithProperties(Properties properties) {
@@ -34,6 +47,24 @@ public class Tetris extends JFrame implements GGActListener {
         isAuto = Boolean.parseBoolean(properties.getProperty("isAuto"));
         String blockActionProperty = properties.getProperty("autoBlockActions", "");
         blockActions = blockActionProperty.split(",");
+        //this.gameLevel = GameLevel.selectGameLevel(properties.getProperty("madness"));
+        this.difficulty = properties.getProperty("difficulty", "easy");
+        initBlockRecord();
+        roundNum = 1;
+    }
+
+    private void initBlockRecord()
+    {
+        blockRecord.put("I", 0);
+        blockRecord.put("J", 0);
+        blockRecord.put("L", 0);
+        blockRecord.put("O", 0);
+        blockRecord.put("S", 0);
+        blockRecord.put("T", 0);
+        blockRecord.put("Z", 0);
+        blockRecord.put("P", 0);
+        blockRecord.put("Q", 0);
+        blockRecord.put("+", 0);
     }
 
     public Tetris(TetrisGameCallback gameCallback, Properties properties) {
@@ -61,7 +92,7 @@ public class Tetris extends JFrame implements GGActListener {
         slowDown = 5;
     }
 
-    // create a block and assign to a preview mode
+    // create a block and assign to a preview mode  随机生成7个shape block
     Actor createRandomTetrisBlock() {
         if (blockPreview != null)
             blockPreview.removeSelf();
@@ -75,9 +106,12 @@ public class Tetris extends JFrame implements GGActListener {
         blockActionIndex++;
         Actor t = null;
         int rnd = random.nextInt(7);
-        switch (9) {
+        if (!"easy".equals(this.difficulty))
+            rnd = random.nextInt(10);
+        switch (rnd) {
             case 0:
                 t = new I(this);
+                blockRecord.put("I", blockRecord.get("I") + 1);
                 if (isAuto) {
                     ((I) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -88,6 +122,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 1:
                 t = new J(this);
+                blockRecord.put("J", blockRecord.get("J") + 1);
                 if (isAuto) {
                     ((J) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -97,6 +132,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 2:
                 t = new L(this);
+                blockRecord.put("L", blockRecord.get("L") + 1);
                 if (isAuto) {
                     ((L) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -106,6 +142,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 3:
                 t = new O(this);
+                blockRecord.put("O", blockRecord.get("O") + 1);
                 if (isAuto) {
                     ((O) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -115,6 +152,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 4:
                 t = new S(this);
+                blockRecord.put("S", blockRecord.get("S") + 1);
                 if (isAuto) {
                     ((S) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -124,6 +162,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 5:
                 t = new T(this);
+                blockRecord.put("T", blockRecord.get("T") + 1);
                 if (isAuto) {
                     ((T) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -133,6 +172,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 6:
                 t = new Z(this);
+                blockRecord.put("Z", blockRecord.get("Z") + 1);
                 if (isAuto) {
                     ((Z) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -142,6 +182,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 7:
                 t = new P(this);
+                blockRecord.put("P", blockRecord.get("P") + 1);
                 if (isAuto) {
                     ((P) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -151,6 +192,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 8:
                 t = new Q(this);
+                blockRecord.put("Q", blockRecord.get("Q") + 1);
                 if (isAuto) {
                     ((Q) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -160,6 +202,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 9:
                 t = new Plus(this);
+                blockRecord.put("+", blockRecord.get("+") + 1);
                 if (isAuto) {
                     ((Plus) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -185,7 +228,8 @@ public class Tetris extends JFrame implements GGActListener {
         if (currentBlock instanceof I) {
             switch (keyEvent) {
                 case KeyEvent.VK_UP:
-                    ((I) currentBlock).rotate();
+                    if (!"madness".equals(this.difficulty))
+                        ((I) currentBlock).rotate();
                     break;
                 case KeyEvent.VK_LEFT:
                     ((I) currentBlock).left();
@@ -202,7 +246,8 @@ public class Tetris extends JFrame implements GGActListener {
         } else if (currentBlock instanceof J) {
             switch (keyEvent) {
                 case KeyEvent.VK_UP:
-                    ((J) currentBlock).rotate();
+                    if (!"madness".equals(this.difficulty))
+                        ((J) currentBlock).rotate();
                     break;
                 case KeyEvent.VK_LEFT:
                     ((J) currentBlock).left();
@@ -219,7 +264,8 @@ public class Tetris extends JFrame implements GGActListener {
         } else if (currentBlock instanceof L) {
             switch (keyEvent) {
                 case KeyEvent.VK_UP:
-                    ((L) currentBlock).rotate();
+                    if (!"madness".equals(this.difficulty))
+                        ((L) currentBlock).rotate();
                     break;
                 case KeyEvent.VK_LEFT:
                     ((L) currentBlock).left();
@@ -236,7 +282,8 @@ public class Tetris extends JFrame implements GGActListener {
         } else if (currentBlock instanceof O) {
             switch (keyEvent) {
                 case KeyEvent.VK_UP:
-                    ((O) currentBlock).rotate();
+                    if (!"madness".equals(this.difficulty))
+                        ((O) currentBlock).rotate();
                     break;
                 case KeyEvent.VK_LEFT:
                     ((O) currentBlock).left();
@@ -253,7 +300,8 @@ public class Tetris extends JFrame implements GGActListener {
         } else if (currentBlock instanceof S) {
             switch (keyEvent) {
                 case KeyEvent.VK_UP:
-                    ((S) currentBlock).rotate();
+                    if (!"madness".equals(this.difficulty))
+                        ((S) currentBlock).rotate();
                     break;
                 case KeyEvent.VK_LEFT:
                     ((S) currentBlock).left();
@@ -270,7 +318,8 @@ public class Tetris extends JFrame implements GGActListener {
         } else if (currentBlock instanceof T) {
             switch (keyEvent) {
                 case KeyEvent.VK_UP:
-                    ((T) currentBlock).rotate();
+                    if (!"madness".equals(this.difficulty))
+                        ((T) currentBlock).rotate();
                     break;
                 case KeyEvent.VK_LEFT:
                     ((T) currentBlock).left();
@@ -287,7 +336,8 @@ public class Tetris extends JFrame implements GGActListener {
         } else if (currentBlock instanceof Z) {
             switch (keyEvent) {
                 case KeyEvent.VK_UP:
-                    ((Z) currentBlock).rotate();
+                    if (!"madness".equals(this.difficulty))
+                        ((Z) currentBlock).rotate();
                     break;
                 case KeyEvent.VK_LEFT:
                     ((Z) currentBlock).left();
@@ -301,10 +351,11 @@ public class Tetris extends JFrame implements GGActListener {
                 default:
                     return;
             }
-        }else if (currentBlock instanceof P) {
+        } else if (currentBlock instanceof P) {
             switch (keyEvent) {
                 case KeyEvent.VK_UP:
-                    ((P) currentBlock).rotate();
+                    if (!"madness".equals(this.difficulty))
+                        ((P) currentBlock).rotate();
                     break;
                 case KeyEvent.VK_LEFT:
                     ((P) currentBlock).left();
@@ -318,10 +369,11 @@ public class Tetris extends JFrame implements GGActListener {
                 default:
                     return;
             }
-        }else if (currentBlock instanceof Q) {
+        } else if (currentBlock instanceof Q) {
             switch (keyEvent) {
                 case KeyEvent.VK_UP:
-                    ((Q) currentBlock).rotate();
+                    if (!"madness".equals(this.difficulty))
+                        ((Q) currentBlock).rotate();
                     break;
                 case KeyEvent.VK_LEFT:
                     ((Q) currentBlock).left();
@@ -335,10 +387,11 @@ public class Tetris extends JFrame implements GGActListener {
                 default:
                     return;
             }
-        }else if (currentBlock instanceof Plus) {
+        } else if (currentBlock instanceof Plus) {
             switch (keyEvent) {
                 case KeyEvent.VK_UP:
-                    ((Plus) currentBlock).rotate();
+                    if (!"madness".equals(this.difficulty))
+                        ((Plus) currentBlock).rotate();
                     break;
                 case KeyEvent.VK_LEFT:
                     ((Plus) currentBlock).left();
@@ -354,10 +407,12 @@ public class Tetris extends JFrame implements GGActListener {
             }
         }
     }
+
     public void act() {
         removeFilledLine();
         moveBlock(gameGrid1.getKeyCode());
     }
+
     private void removeFilledLine() {
         for (int y = 0; y < gameGrid1.nbVertCells; y++) {
             boolean isLineComplete = true;
@@ -383,19 +438,43 @@ public class Tetris extends JFrame implements GGActListener {
                 }
                 gameGrid1.refresh();
                 score++;
+                totalScore++;
                 gameCallback.changeOfScore(score);
                 showScore(score);
+
+
+                int tmpScore = 2*this.score;
+                int tmpSlowDown = slowDown;
+                if (tmpScore > 10)
+                    tmpSlowDown = (int)(slowDown*0.8);
+                if (tmpScore > 20)
+                    tmpSlowDown = (int)(slowDown*0.6);
+                if (tmpScore > 30)
+                    tmpSlowDown = (int)(slowDown*0.4);
+                if (tmpScore > 40)
+                    tmpSlowDown = (int)(slowDown*0.2);
+                if (tmpScore > 50)
+                    tmpSlowDown = 0;
+
                 // Set speed of tetrisBlocks
                 if (score > 10)
-                    slowDown = 4;
+                    slowDown = (int)(slowDown*0.8);
                 if (score > 20)
-                    slowDown = 3;
+                    slowDown = (int)(slowDown*0.6);
                 if (score > 30)
-                    slowDown = 2;
+                    slowDown = (int)(slowDown*0.4);
                 if (score > 40)
-                    slowDown = 1;
+                    slowDown = (int)(slowDown*0.2);
                 if (score > 50)
                     slowDown = 0;
+
+
+                if ("medium".equals(this.difficulty))
+                    slowDown = (int)(slowDown*0.8);
+                else if ("madness".equals(this.difficulty))
+                    slowDown = ThreadLocalRandom.current().nextInt(tmpSlowDown, slowDown+1);
+                else slowDown = 5;
+
             }
         }
     }
@@ -414,14 +493,126 @@ public class Tetris extends JFrame implements GGActListener {
     void gameOver() {
         gameGrid1.addActor(new Actor("sprites/gameover.gif"), new Location(5, 5));
         gameGrid1.doPause();
-        if (isAuto) {
-            System.exit(0);
+        averageScore = totalScore / roundNum;
+//        printToFile();
+//        printResult();
+//        if (isAuto) {
+//            System.exit(0);
+//        }
+    }
+
+//    void printResult()
+//    {
+//        ArrayList<String> keys = new ArrayList<String>();
+//        System.out.println("------------------------------------------");
+//        System.out.println("Round #" + roundNum);
+//        System.out.println("Score: " + score);
+//        for(String key : blockRecord.keySet())
+//        {
+//            keys.add(key);
+//        }
+//        Collections.sort(keys);
+//        for(String key : keys)
+//        {
+//            System.out.println(key + ": " + blockRecord.get(key));
+//        }
+//    }
+
+    void printToFile()
+    {
+        FileWriter fw = null;
+        try {
+            if(roundNum == 1)
+            {
+                fw = new FileWriter("Statistics.txt", false);
+            }
+            fw = new FileWriter("Statistics.txt", true);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter out = new PrintWriter(bw);
+
+        ArrayList<String> keys = new ArrayList<String>();
+        out.println("------------------------------------------");
+        out.println("Round #" + roundNum);
+        out.println("Score: " + score);
+        for(String key : blockRecord.keySet())
+        {
+            keys.add(key);
+        }
+        Collections.sort(keys);
+        for(String key : keys)
+        {
+            out.println(key + ": " + blockRecord.get(key));
+        }
+        out.close();
+
+        RandomAccessFile f = null;
+        try {
+            f = new RandomAccessFile(new File("Statistics.txt"), "rw");
+            f.seek(0); // to the beginning
+            String difficultyText = "";
+            switch (difficulty)
+            {
+                case "easy":
+                    difficultyText = "Easy";
+                    break;
+                case "medium":
+                    difficultyText = "Medium";
+                    break;
+                case "madness":
+                    difficultyText = "Madness";
+                    break;
+                default:
+                    break;
+            }
+
+            f.write(("Difficulty: " + difficultyText + "\n" + "Average score per round: "
+                    + averageScore + "\n").getBytes());
+            f.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+//        String result = "";
+//        String line = "";
+//        File stats = new File("/Statistics.txt");
+//        try {
+//            FileReader fr = new FileReader(stats);
+//            BufferedReader br = new BufferedReader(fr);
+//            while((line = br.readLine()) != null)
+//            {
+//                result += line;
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        result = "Difficulty: " + difficulty + "\n" + "Average score per round: " + averageScore + "\n"
+//                + result;
+//        stats.delete();
+//        FileOutputStream fos = null;
+//        try {
+//            fos = new FileOutputStream(stats);
+//            fos.write(result.getBytes());
+//            fos.flush();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
     }
 
     // Start a new game
-    public void startBtnActionPerformed(java.awt.event.ActionEvent evt)
-    {
+    public void startBtnActionPerformed(java.awt.event.ActionEvent evt) {
+        averageScore = totalScore / roundNum;
+
+        printToFile();
+        initBlockRecord();
         gameGrid1.doPause();
         gameGrid1.removeAllActors();
         gameGrid2.removeAllActors();
@@ -433,9 +624,13 @@ public class Tetris extends JFrame implements GGActListener {
         gameGrid1.addActor(currentBlock, new Location(6, 0));
         gameGrid1.doRun();
         gameGrid1.requestFocus();
+        roundNum++;
         score = 0;
         showScore(score);
-        slowDown = 5;
+        if ("medium".equals(this.difficulty))
+            slowDown = (int)(slowDown*0.8);
+        else slowDown = slowDown;
+        System.out.println(slowDown);
     }
 
     // Different speed for manual and auto mode
