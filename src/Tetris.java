@@ -20,7 +20,7 @@ public class Tetris extends JFrame implements GGActListener {
     private int averageScore = 0;
     private int score = 0;
     private int roundNum = 0;
-    private int slowDown;
+    private int slowDown = 20;
     private Random random = new Random(0);
     private Hashtable<String, Integer> blockRecord = new Hashtable<String, Integer>();
 
@@ -39,6 +39,8 @@ public class Tetris extends JFrame implements GGActListener {
     //private GameLevel gameLevel;
 
     private String difficulty;
+
+    private Boolean newRound = false;
 
     // Initialise object
     private void initWithProperties(Properties properties) {
@@ -90,8 +92,10 @@ public class Tetris extends JFrame implements GGActListener {
         setTitle("SWEN30006 Tetris Madness");
         score = 0;
         showScore(score);
-        slowDown = 5;
-        slowDown = 20;
+        if(newRound){
+            slowDown = 20;
+            newRound = false;
+        };
     }
 
     // create a block and assign to a preview mode  随机生成7个shape block
@@ -215,7 +219,25 @@ public class Tetris extends JFrame implements GGActListener {
         }
         // Show preview tetrisBlock
 
+        // Set speed of tetrisBlocks
+        if (score > 10)
+            slowDown = (int)(slowDown*0.8);
+        if (score > 20)
+            slowDown = (int)(slowDown*0.6);
+        if (score > 30)
+            slowDown = (int)(slowDown*0.4);
+        if (score > 40)
+            slowDown = (int)(slowDown*0.2);
+        if (score > 50)
+            slowDown = 0;
+
+
+        if ("medium".equals(this.difficulty))
+            slowDown = (int)(slowDown*0.8);
+        else if ("madness".equals(this.difficulty))
+            slowDown = ThreadLocalRandom.current().nextInt(20, 40);
         t.setSlowDown(slowDown);
+        System.out.println(slowDown);
         return t;
     }
 
@@ -444,39 +466,6 @@ public class Tetris extends JFrame implements GGActListener {
                 gameCallback.changeOfScore(score);
                 showScore(score);
 
-
-                int tmpScore = 2*this.score;
-                int tmpSlowDown = slowDown;
-                if (tmpScore > 10)
-                    tmpSlowDown = (int)(slowDown*0.8);
-                if (tmpScore > 20)
-                    tmpSlowDown = (int)(slowDown*0.6);
-                if (tmpScore > 30)
-                    tmpSlowDown = (int)(slowDown*0.4);
-                if (tmpScore > 40)
-                    tmpSlowDown = (int)(slowDown*0.2);
-                if (tmpScore > 50)
-                    tmpSlowDown = 0;
-
-                // Set speed of tetrisBlocks
-                if (score > 1)
-                    slowDown = (int)(slowDown*0.8);
-                if (score > 2)
-                    slowDown = (int)(slowDown*0.6);
-                if (score > 3)
-                    slowDown = (int)(slowDown*0.4);
-                if (score > 4)
-                    slowDown = (int)(slowDown*0.2);
-                if (score > 5)
-                    slowDown = 0;
-
-
-                if ("medium".equals(this.difficulty))
-                    slowDown = (int)(slowDown*0.8);
-                else if ("madness".equals(this.difficulty))
-                    slowDown = ThreadLocalRandom.current().nextInt(tmpSlowDown, slowDown+1);
-                else slowDown = 5;
-
             }
         }
     }
@@ -495,30 +484,9 @@ public class Tetris extends JFrame implements GGActListener {
     void gameOver() {
         gameGrid1.addActor(new Actor("sprites/gameover.gif"), new Location(5, 5));
         gameGrid1.doPause();
+        newRound = true;
         averageScore = totalScore / roundNum;
-//        printToFile();
-//        printResult();
-//        if (isAuto) {
-//            System.exit(0);
-//        }
     }
-
-//    void printResult()
-//    {
-//        ArrayList<String> keys = new ArrayList<String>();
-//        System.out.println("------------------------------------------");
-//        System.out.println("Round #" + roundNum);
-//        System.out.println("Score: " + score);
-//        for(String key : blockRecord.keySet())
-//        {
-//            keys.add(key);
-//        }
-//        Collections.sort(keys);
-//        for(String key : keys)
-//        {
-//            System.out.println(key + ": " + blockRecord.get(key));
-//        }
-//    }
 
     void printToFile()
     {
@@ -596,7 +564,6 @@ public class Tetris extends JFrame implements GGActListener {
         if ("medium".equals(this.difficulty))
             slowDown = (int)(slowDown*0.8);
         else slowDown = slowDown;
-        System.out.println(slowDown);
     }
 
     // Different speed for manual and auto mode
