@@ -82,7 +82,7 @@ public abstract class Parent extends Actor {
         autoBlockIndex++;
     }
 
-    // Cechk if the block can be played automatically based on the properties file
+    // Check if the block can be played automatically based on the properties file
     private boolean canAutoPlay() {
         if (autoBlockMove != null && !autoBlockMove.equals("")) {
             if (autoBlockMove.length() > autoBlockIndex) {

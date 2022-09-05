@@ -20,7 +20,7 @@ public class Tetris extends JFrame implements GGActListener {
     private int averageScore = 0;
     private int score = 0;
     private int roundNum = 0;
-    private int slowDown = 5;
+    private int slowDown;
     private Random random = new Random(0);
     private Hashtable<String, Integer> blockRecord = new Hashtable<String, Integer>();
 
@@ -48,7 +48,8 @@ public class Tetris extends JFrame implements GGActListener {
         String blockActionProperty = properties.getProperty("autoBlockActions", "");
         blockActions = blockActionProperty.split(",");
         //this.gameLevel = GameLevel.selectGameLevel(properties.getProperty("madness"));
-        this.difficulty = properties.getProperty("difficulty", "easy");
+        this.difficulty = "madness";
+        //this.difficulty = properties.getProperty("difficulty", "easy");
         initBlockRecord();
         roundNum = 1;
     }
@@ -90,6 +91,7 @@ public class Tetris extends JFrame implements GGActListener {
         score = 0;
         showScore(score);
         slowDown = 5;
+        slowDown = 20;
     }
 
     // create a block and assign to a preview mode  随机生成7个shape block
@@ -457,15 +459,15 @@ public class Tetris extends JFrame implements GGActListener {
                     tmpSlowDown = 0;
 
                 // Set speed of tetrisBlocks
-                if (score > 10)
+                if (score > 1)
                     slowDown = (int)(slowDown*0.8);
-                if (score > 20)
+                if (score > 2)
                     slowDown = (int)(slowDown*0.6);
-                if (score > 30)
+                if (score > 3)
                     slowDown = (int)(slowDown*0.4);
-                if (score > 40)
+                if (score > 4)
                     slowDown = (int)(slowDown*0.2);
-                if (score > 50)
+                if (score > 5)
                     slowDown = 0;
 
 
@@ -553,19 +555,12 @@ public class Tetris extends JFrame implements GGActListener {
             f = new RandomAccessFile(new File("Statistics.txt"), "rw");
             f.seek(0); // to the beginning
             String difficultyText = "";
-            switch (difficulty)
-            {
-                case "easy":
-                    difficultyText = "Easy";
-                    break;
-                case "medium":
-                    difficultyText = "Medium";
-                    break;
-                case "madness":
-                    difficultyText = "Madness";
-                    break;
-                default:
-                    break;
+            if(Objects.equals(difficulty, "easy")){
+                difficultyText = "easy";
+            }else if(Objects.equals(difficulty, "medium")){
+                difficultyText = "medium";
+            }else{
+                difficultyText = "Madness";
             }
 
             f.write(("Difficulty: " + difficultyText + "\n" + "Average score per round: "
@@ -576,35 +571,6 @@ public class Tetris extends JFrame implements GGActListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-//        String result = "";
-//        String line = "";
-//        File stats = new File("/Statistics.txt");
-//        try {
-//            FileReader fr = new FileReader(stats);
-//            BufferedReader br = new BufferedReader(fr);
-//            while((line = br.readLine()) != null)
-//            {
-//                result += line;
-//            }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        result = "Difficulty: " + difficulty + "\n" + "Average score per round: " + averageScore + "\n"
-//                + result;
-//        stats.delete();
-//        FileOutputStream fos = null;
-//        try {
-//            fos = new FileOutputStream(stats);
-//            fos.write(result.getBytes());
-//            fos.flush();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
     }
 
     // Start a new game
