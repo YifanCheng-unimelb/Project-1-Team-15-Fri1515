@@ -7,11 +7,11 @@ import ch.aplu.jgamegrid.Location;
 import java.util.ArrayList;
 
 /**
- * @Author Mingyue Jiang
+ * @Author Mingyue Jiang, Yutong CHEN
  * @Date 2022 2022/8/30
  * @Version 1.0
  */
-public class Parent extends Actor {
+public abstract class Parent extends Actor {
 
   //    private Location[][] r = new Location[4][4];
   protected Tetris tetris;

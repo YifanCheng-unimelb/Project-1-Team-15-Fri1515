@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="19ea027c-f276-40a5-aa9b-06c1fc53fe25" name="Changes" comment="Changes" />
+    <list default="true" id="19ea027c-f276-40a5-aa9b-06c1fc53fe25" name="Changes" comment="Changes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Parent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parent.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +26,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="应用程序.Driver">
+  <component name="RunManager" selected="Application.Driver">
     <configuration name="Driver" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="src.Driver" />
       <module name="Project-1-Team-15-Fri1515" />
@@ -36,14 +39,9 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JAR 应用程序.JGameGrid.jar" />
-      <item itemvalue="应用程序.Driver" />
+      <item itemvalue="Application.Driver" />
+      <item itemvalue="JAR Application.JGameGrid.jar" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JAR 应用程序.JGameGrid.jar" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
