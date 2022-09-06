@@ -232,11 +232,9 @@ public class Tetris extends JFrame implements GGActListener {
 
 
         if ("medium".equals(this.difficulty))
-            slowDown = (int)(slowDown*0.8);
+            t.setSlowDown(Medium.getSpeed(slowDown));
         else if ("madness".equals(this.difficulty))
-            slowDown = ThreadLocalRandom.current().nextInt(20, 40);
-        t.setSlowDown(slowDown);
-        System.out.println(slowDown);
+            t.setSlowDown(Madness.getSpeed(slowDown));
         return t;
     }
 
