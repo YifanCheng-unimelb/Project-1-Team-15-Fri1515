@@ -235,6 +235,7 @@ public class Tetris extends JFrame implements GGActListener {
             t.setSlowDown(Medium.getSpeed(slowDown));
         else if ("madness".equals(this.difficulty))
             t.setSlowDown(Madness.getSpeed(slowDown));
+        else t.setSlowDown(slowDown);
         return t;
     }
 
@@ -558,9 +559,6 @@ public class Tetris extends JFrame implements GGActListener {
         roundNum++;
         score = 0;
         showScore(score);
-        if ("medium".equals(this.difficulty))
-            slowDown = (int)(slowDown*0.8);
-        else slowDown = slowDown;
     }
 
     // Different speed for manual and auto mode
