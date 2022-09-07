@@ -484,12 +484,28 @@ public class Tetris extends JFrame implements GGActListener {
         gameGrid1.doPause();
         newRound = true;
         averageScore = totalScore / roundNum;
+        if(isAuto)
+        {
+            printToFile();
+            System.exit(0);
+        }
     }
 
     void printToFile()
     {
+        // Record difficulty level
+        String difficultyText = "";
+        if(Objects.equals(difficulty, "easy")){
+            difficultyText = "Easy";
+        }else if(Objects.equals(difficulty, "medium")){
+            difficultyText = "Medium";
+        }else{
+            difficultyText = "Madness";
+        }
+
         FileWriter fw = null;
         try {
+            // When a new game started, clear the old file if already exist
             if(roundNum == 1)
             {
                 fw = new FileWriter("Statistics.txt", false);
@@ -502,9 +518,18 @@ public class Tetris extends JFrame implements GGActListener {
         PrintWriter out = new PrintWriter(bw);
 
         ArrayList<String> keys = new ArrayList<String>();
-        out.println("------------------------------------------");
+        if(roundNum == 1)
+        {
+            out.println("Difficulty: " + difficultyText);
+            out.println("Average score per round: " + averageScore);
+        }
+
+        // Statistics recording for each round of game
+        out.println("------------------------------------------             ");
         out.println("Round #" + roundNum);
         out.println("Score: " + score);
+
+        // Write shape count to statistics in ascending order
         for(String key : blockRecord.keySet())
         {
             keys.add(key);
@@ -516,24 +541,32 @@ public class Tetris extends JFrame implements GGActListener {
         }
         out.close();
 
-        RandomAccessFile f = null;
+        // Read everything in statistics and change average score if necessary
+        String data = "";
+        String line = "";
+        int count = 1;
         try {
-            f = new RandomAccessFile(new File("Statistics.txt"), "rw");
-            f.seek(0); // to the beginning
-            String difficultyText = "";
-            if(Objects.equals(difficulty, "easy")){
-                difficultyText = "easy";
-            }else if(Objects.equals(difficulty, "medium")){
-                difficultyText = "medium";
-            }else{
-                difficultyText = "Madness";
+            BufferedReader br = new BufferedReader(new FileReader("Statistics.txt"));
+            while((line = br.readLine()) != null) {
+                // Change average score when more than one round had been played
+                if(count == 2 && roundNum > 1)
+                {
+                    line = "Average score per round: " + 1234;
+                }
+                data += line + "\n";
+                count++;
             }
-
-            f.write(("Difficulty: " + difficultyText + "\n" + "Average score per round: "
-                    + averageScore + "\n").getBytes());
-            f.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Write edited data to statistics file
+        try {
+            BufferedWriter output = new BufferedWriter(new FileWriter("Statistics.txt"));
+            output.write(data);
+            output.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
