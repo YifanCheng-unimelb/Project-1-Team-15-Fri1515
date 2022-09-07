@@ -11,7 +11,11 @@ import java.io.*;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-
+/**
+ * @Author Mingyue Jiang, Yutong CHEN, Yifan Cheng
+ * @Date 2022 2022/8/30
+ * @Version 1.0
+ */
 //俄罗斯方块主类
 public class Tetris extends JFrame implements GGActListener {
     private Actor currentBlock = null;  // Currently active block
@@ -551,7 +555,7 @@ public class Tetris extends JFrame implements GGActListener {
                 // Change average score when more than one round had been played
                 if(count == 2 && roundNum > 1)
                 {
-                    line = "Average score per round: " + 1234;
+                    line = "Average score per round: " + averageScore;
                 }
                 data += line + "\n";
                 count++;

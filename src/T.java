@@ -2,7 +2,7 @@ package src;
 
 import ch.aplu.jgamegrid.Location;
 /**
- * @Author Mingyue Jiang, Yutong CHEN
+ * @Author Mingyue Jiang, Yutong CHEN, Yifan Cheng
  * @Date 2022 2022/8/30
  * @Version 1.0
  */

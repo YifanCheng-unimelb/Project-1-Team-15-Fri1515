@@ -7,7 +7,7 @@ import ch.aplu.jgamegrid.Location;
 import java.util.ArrayList;
 
 /**
- * @Author Mingyue Jiang, Yutong CHEN
+ * @Author Mingyue Jiang, Yutong CHEN, Yifan Cheng
  * @Date 2022 2022/8/30
  * @Version 1.0
  */
