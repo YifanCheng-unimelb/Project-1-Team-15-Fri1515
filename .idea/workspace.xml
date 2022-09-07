@@ -3,25 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="b8908a44-f714-44b5-b31a-26e9f3ea11bf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/I.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/I.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/J.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/J.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/L.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/L.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Madness.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Madness.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Medium.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Medium.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/O.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/O.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/P.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/P.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Parent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Plus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Plus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Q.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Q.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/S.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/S.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/T.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/T.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tetris.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tetris.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Z.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Z.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -39,11 +30,21 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
   <component name="ProjectId" id="2ENqVLc2CPitpajGUElCQjX7lP8" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/Unimelb/OneDrive - 3yndv8/桌面/new"
+  }
+}]]></component>
   <component name="RunManager">
     <configuration name="Driver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="src.Driver" />
@@ -58,22 +59,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="SWEN30006_22B_Project1_spec" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="SWEN30006_22B_Project1_spec" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.Driver" />
+        <item itemvalue="Application.Driver" />
       </list>
     </recent_temporary>
   </component>

@@ -24,7 +24,7 @@ public class Tetris extends JFrame implements GGActListener {
     private int averageScore = 0;
     private int score = 0;
     private int roundNum = 0;
-    private int slowDown = 20;
+    private int slowDown = 5;
     private Random random = new Random(0);
     private Hashtable<String, Integer> blockRecord = new Hashtable<String, Integer>();
 
@@ -39,7 +39,7 @@ public class Tetris extends JFrame implements GGActListener {
     private String[] blockActions = new String[10];
     //用于存储当前方块的变量
     private int blockActionIndex = 0;
-
+    private Parent shapes;
     //private GameLevel gameLevel;
 
     private String difficulty;
@@ -223,7 +223,7 @@ public class Tetris extends JFrame implements GGActListener {
         // Show preview tetrisBlock
 
         // Set speed of tetrisBlocks
-        if (score > 10)
+        /*if (score > 10)
             slowDown = (int)(slowDown*0.8);
         if (score > 20)
             slowDown = (int)(slowDown*0.6);
@@ -239,7 +239,7 @@ public class Tetris extends JFrame implements GGActListener {
             t.setSlowDown(Medium.getSpeed(slowDown));
         else if ("madness".equals(this.difficulty))
             t.setSlowDown(Madness.getSpeed(slowDown));
-        else t.setSlowDown(slowDown);
+        else */t.setSlowDown(slowDown);
         return t;
     }
 
@@ -251,7 +251,25 @@ public class Tetris extends JFrame implements GGActListener {
     // Handle user input to move block. Arrow left to move left, Arrow right to move right, Arrow up to rotate and
     // Arrow down for going down
     private void moveBlock(int keyEvent) {
-        if (currentBlock instanceof I) {
+        switch (keyEvent){
+            case KeyEvent.VK_UP:
+                if (!"madness".equals(this.difficulty)){
+                    ((Parent) currentBlock).rotate();
+                }
+                break;
+            case KeyEvent.VK_LEFT:
+                ((Parent) currentBlock).left();
+                break;
+            case KeyEvent.VK_RIGHT:
+                ((Parent) currentBlock).right();
+                break;
+            case KeyEvent.VK_DOWN:
+                ((Parent) currentBlock).drop();
+                break;
+            default:
+                return;
+        }
+        /*if (currentBlock instanceof I) {
             switch (keyEvent) {
                 case KeyEvent.VK_UP:
                     if (!"madness".equals(this.difficulty))
@@ -431,7 +449,7 @@ public class Tetris extends JFrame implements GGActListener {
                 default:
                     return;
             }
-        }
+        }*/
     }
 
     public void act() {
@@ -468,6 +486,37 @@ public class Tetris extends JFrame implements GGActListener {
                 gameCallback.changeOfScore(score);
                 showScore(score);
 
+                int tmpScore = 2*this.score;
+                int tmpSlowDown = slowDown;
+                if (tmpScore > 10)
+                    tmpSlowDown = (int)(slowDown*0.8);
+                if (tmpScore > 20)
+                    tmpSlowDown = (int)(slowDown*0.6);
+                if (tmpScore > 30)
+                    tmpSlowDown = (int)(slowDown*0.4);
+                if (tmpScore > 40)
+                    tmpSlowDown = (int)(slowDown*0.2);
+                if (tmpScore > 50)
+                    tmpSlowDown = 0;
+
+                // Set speed of tetrisBlocks
+                if (score > 10)
+                    slowDown = (int)(slowDown*0.8);
+                if (score > 20)
+                    slowDown = (int)(slowDown*0.6);
+                if (score > 30)
+                    slowDown = (int)(slowDown*0.4);
+                if (score > 40)
+                    slowDown = (int)(slowDown*0.2);
+                if (score > 50)
+                    slowDown = 0;
+
+
+                if ("medium".equals(this.difficulty))
+                    slowDown = (int)(slowDown*0.8);
+                else if ("madness".equals(this.difficulty))
+                    slowDown = ThreadLocalRandom.current().nextInt(tmpSlowDown, slowDown+1);
+                else slowDown = 5;
             }
         }
     }
