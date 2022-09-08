@@ -18,15 +18,15 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 //俄罗斯方块主类
 public class Tetris extends JFrame implements GGActListener {
-    private Actor currentBlock = null;  // Currently active block
+    private Actor currentBlock;  // Currently active block
     private Actor blockPreview = null;   // block in preview window
     private int totalScore = 0;
     private int averageScore = 0;
-    private int score = 0;
+    private int score;
     private int roundNum = 0;
     private int slowDown = 5;
     private Random random = new Random(0);
-    private Hashtable<String, Integer> blockRecord = new Hashtable<String, Integer>();
+    private Hashtable<String, Integer> blockRecord = new Hashtable<>();
 
     private TetrisGameCallback gameCallback;
 
@@ -220,10 +220,8 @@ public class Tetris extends JFrame implements GGActListener {
                 blockPreview = previewPlus;
                 break;
         }
-        // Show preview tetrisBlock
-
         // Set speed of tetrisBlocks
-        /*if (score > 10)
+        if (score > 10)
             slowDown = (int)(slowDown*0.8);
         if (score > 20)
             slowDown = (int)(slowDown*0.6);
@@ -239,7 +237,7 @@ public class Tetris extends JFrame implements GGActListener {
             t.setSlowDown(Medium.getSpeed(slowDown));
         else if ("madness".equals(this.difficulty))
             t.setSlowDown(Madness.getSpeed(slowDown));
-        else */t.setSlowDown(slowDown);
+        else t.setSlowDown(slowDown);
         return t;
     }
 
@@ -251,9 +249,9 @@ public class Tetris extends JFrame implements GGActListener {
     // Handle user input to move block. Arrow left to move left, Arrow right to move right, Arrow up to rotate and
     // Arrow down for going down
     private void moveBlock(int keyEvent) {
-        switch (keyEvent){
+        switch (keyEvent) {
             case KeyEvent.VK_UP:
-                if (!"madness".equals(this.difficulty)){
+                if (!"madness".equals(this.difficulty)) {
                     ((Parent) currentBlock).rotate();
                 }
                 break;
@@ -267,189 +265,8 @@ public class Tetris extends JFrame implements GGActListener {
                 ((Parent) currentBlock).drop();
                 break;
             default:
-                return;
+                break;
         }
-        /*if (currentBlock instanceof I) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    if (!"madness".equals(this.difficulty))
-                        ((I) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((I) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((I) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((I) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof J) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    if (!"madness".equals(this.difficulty))
-                        ((J) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((J) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((J) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((J) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof L) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    if (!"madness".equals(this.difficulty))
-                        ((L) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((L) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((L) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((L) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof O) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    if (!"madness".equals(this.difficulty))
-                        ((O) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((O) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((O) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((O) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof S) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    if (!"madness".equals(this.difficulty))
-                        ((S) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((S) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((S) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((S) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof T) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    if (!"madness".equals(this.difficulty))
-                        ((T) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((T) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((T) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((T) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof Z) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    if (!"madness".equals(this.difficulty))
-                        ((Z) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((Z) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((Z) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((Z) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof P) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    if (!"madness".equals(this.difficulty))
-                        ((P) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((P) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((P) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((P) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof Q) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    if (!"madness".equals(this.difficulty))
-                        ((Q) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((Q) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((Q) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((Q) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        } else if (currentBlock instanceof Plus) {
-            switch (keyEvent) {
-                case KeyEvent.VK_UP:
-                    if (!"madness".equals(this.difficulty))
-                        ((Plus) currentBlock).rotate();
-                    break;
-                case KeyEvent.VK_LEFT:
-                    ((Plus) currentBlock).left();
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    ((Plus) currentBlock).right();
-                    break;
-                case KeyEvent.VK_DOWN:
-                    ((Plus) currentBlock).drop();
-                    break;
-                default:
-                    return;
-            }
-        }*/
     }
 
     public void act() {
@@ -485,38 +302,6 @@ public class Tetris extends JFrame implements GGActListener {
                 totalScore++;
                 gameCallback.changeOfScore(score);
                 showScore(score);
-
-                int tmpScore = 2*this.score;
-                int tmpSlowDown = slowDown;
-                if (tmpScore > 10)
-                    tmpSlowDown = (int)(slowDown*0.8);
-                if (tmpScore > 20)
-                    tmpSlowDown = (int)(slowDown*0.6);
-                if (tmpScore > 30)
-                    tmpSlowDown = (int)(slowDown*0.4);
-                if (tmpScore > 40)
-                    tmpSlowDown = (int)(slowDown*0.2);
-                if (tmpScore > 50)
-                    tmpSlowDown = 0;
-
-                // Set speed of tetrisBlocks
-                if (score > 10)
-                    slowDown = (int)(slowDown*0.8);
-                if (score > 20)
-                    slowDown = (int)(slowDown*0.6);
-                if (score > 30)
-                    slowDown = (int)(slowDown*0.4);
-                if (score > 40)
-                    slowDown = (int)(slowDown*0.2);
-                if (score > 50)
-                    slowDown = 0;
-
-
-                if ("medium".equals(this.difficulty))
-                    slowDown = (int)(slowDown*0.8);
-                else if ("madness".equals(this.difficulty))
-                    slowDown = ThreadLocalRandom.current().nextInt(tmpSlowDown, slowDown+1);
-                else slowDown = 5;
             }
         }
     }
