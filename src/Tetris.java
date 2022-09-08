@@ -20,13 +20,10 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Tetris extends JFrame implements GGActListener {
     private Actor currentBlock;  // Currently active block
     private Actor blockPreview = null;   // block in preview window
-    private int totalScore = 0;
-    private int averageScore = 0;
     private int score;
-    private int roundNum = 0;
     private int slowDown = 5;
     private Random random = new Random(0);
-    private Hashtable<String, Integer> blockRecord = new Hashtable<>();
+    private StatsRecorder stats;
 
     private TetrisGameCallback gameCallback;
 
@@ -55,23 +52,10 @@ public class Tetris extends JFrame implements GGActListener {
         blockActions = blockActionProperty.split(",");
         //this.gameLevel = GameLevel.selectGameLevel(properties.getProperty("madness"));
         this.difficulty = properties.getProperty("difficulty", "easy");
-        initBlockRecord();
-        roundNum = 1;
+        // Initialize statistics
+        stats = new StatsRecorder(difficulty);
     }
 
-    private void initBlockRecord()
-    {
-        blockRecord.put("I", 0);
-        blockRecord.put("J", 0);
-        blockRecord.put("L", 0);
-        blockRecord.put("O", 0);
-        blockRecord.put("S", 0);
-        blockRecord.put("T", 0);
-        blockRecord.put("Z", 0);
-        blockRecord.put("P", 0);
-        blockRecord.put("Q", 0);
-        blockRecord.put("+", 0);
-    }
 
     public Tetris(TetrisGameCallback gameCallback, Properties properties) {
         // Initialise value
@@ -120,7 +104,8 @@ public class Tetris extends JFrame implements GGActListener {
         switch (rnd) {
             case 0:
                 t = new I(this);
-                blockRecord.put("I", blockRecord.get("I") + 1);
+                // Update block count in statistics
+                stats.blockRecord.put("I", stats.blockRecord.get("I") + 1);
                 if (isAuto) {
                     ((I) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -131,7 +116,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 1:
                 t = new J(this);
-                blockRecord.put("J", blockRecord.get("J") + 1);
+                stats.blockRecord.put("J", stats.blockRecord.get("J") + 1);
                 if (isAuto) {
                     ((J) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -141,7 +126,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 2:
                 t = new L(this);
-                blockRecord.put("L", blockRecord.get("L") + 1);
+                stats.blockRecord.put("L", stats.blockRecord.get("L") + 1);
                 if (isAuto) {
                     ((L) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -151,7 +136,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 3:
                 t = new O(this);
-                blockRecord.put("O", blockRecord.get("O") + 1);
+                stats.blockRecord.put("O", stats.blockRecord.get("O") + 1);
                 if (isAuto) {
                     ((O) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -161,7 +146,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 4:
                 t = new S(this);
-                blockRecord.put("S", blockRecord.get("S") + 1);
+                stats.blockRecord.put("S", stats.blockRecord.get("S") + 1);
                 if (isAuto) {
                     ((S) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -171,7 +156,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 5:
                 t = new T(this);
-                blockRecord.put("T", blockRecord.get("T") + 1);
+                stats.blockRecord.put("T", stats.blockRecord.get("T") + 1);
                 if (isAuto) {
                     ((T) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -181,7 +166,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 6:
                 t = new Z(this);
-                blockRecord.put("Z", blockRecord.get("Z") + 1);
+                stats.blockRecord.put("Z", stats.blockRecord.get("Z") + 1);
                 if (isAuto) {
                     ((Z) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -191,7 +176,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 7:
                 t = new P(this);
-                blockRecord.put("P", blockRecord.get("P") + 1);
+                stats.blockRecord.put("P", stats.blockRecord.get("P") + 1);
                 if (isAuto) {
                     ((P) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -201,7 +186,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 8:
                 t = new Q(this);
-                blockRecord.put("Q", blockRecord.get("Q") + 1);
+                stats.blockRecord.put("Q", stats.blockRecord.get("Q") + 1);
                 if (isAuto) {
                     ((Q) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -211,7 +196,7 @@ public class Tetris extends JFrame implements GGActListener {
                 break;
             case 9:
                 t = new Plus(this);
-                blockRecord.put("+", blockRecord.get("+") + 1);
+                stats.blockRecord.put("+", stats.blockRecord.get("+") + 1);
                 if (isAuto) {
                     ((Plus) t).setAutoBlockMove(currentBlockMove);
                 }
@@ -299,7 +284,9 @@ public class Tetris extends JFrame implements GGActListener {
                 }
                 gameGrid1.refresh();
                 score++;
-                totalScore++;
+                // Update statistics
+                stats.score = score;
+                stats.totalScore++;
                 gameCallback.changeOfScore(score);
                 showScore(score);
             }
@@ -321,101 +308,21 @@ public class Tetris extends JFrame implements GGActListener {
         gameGrid1.addActor(new Actor("sprites/gameover.gif"), new Location(5, 5));
         gameGrid1.doPause();
         newRound = true;
-        averageScore = totalScore / roundNum;
         if(isAuto)
         {
-            printToFile();
+            // Output statistics to file
+            stats.printToFile();
             System.exit(0);
         }
     }
 
-    void printToFile()
-    {
-        // Record difficulty level
-        String difficultyText = "";
-        if(Objects.equals(difficulty, "easy")){
-            difficultyText = "Easy";
-        }else if(Objects.equals(difficulty, "medium")){
-            difficultyText = "Medium";
-        }else{
-            difficultyText = "Madness";
-        }
-
-        FileWriter fw = null;
-        try {
-            // When a new game started, clear the old file if already exist
-            if(roundNum == 1)
-            {
-                fw = new FileWriter("Statistics.txt", false);
-            }
-            fw = new FileWriter("Statistics.txt", true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        BufferedWriter bw = new BufferedWriter(fw);
-        PrintWriter out = new PrintWriter(bw);
-
-        ArrayList<String> keys = new ArrayList<String>();
-        if(roundNum == 1)
-        {
-            out.println("Difficulty: " + difficultyText);
-            out.println("Average score per round: " + averageScore);
-        }
-
-        // Statistics recording for each round of game
-        out.println("------------------------------------------             ");
-        out.println("Round #" + roundNum);
-        out.println("Score: " + score);
-
-        // Write shape count to statistics in ascending order
-        for(String key : blockRecord.keySet())
-        {
-            keys.add(key);
-        }
-        Collections.sort(keys);
-        for(String key : keys)
-        {
-            out.println(key + ": " + blockRecord.get(key));
-        }
-        out.close();
-
-        // Read everything in statistics and change average score if necessary
-        String data = "";
-        String line = "";
-        int count = 1;
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("Statistics.txt"));
-            while((line = br.readLine()) != null) {
-                // Change average score when more than one round had been played
-                if(count == 2 && roundNum > 1)
-                {
-                    line = "Average score per round: " + averageScore;
-                }
-                data += line + "\n";
-                count++;
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Write edited data to statistics file
-        try {
-            BufferedWriter output = new BufferedWriter(new FileWriter("Statistics.txt"));
-            output.write(data);
-            output.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     // Start a new game
     public void startBtnActionPerformed(java.awt.event.ActionEvent evt) {
-        averageScore = totalScore / roundNum;
-
-        printToFile();
-        initBlockRecord();
+        // Output statistics to file
+        stats.printToFile();
+        // Prepare statistics for new round
+        stats.initBlockRecord();
         gameGrid1.doPause();
         gameGrid1.removeAllActors();
         gameGrid2.removeAllActors();
@@ -427,8 +334,10 @@ public class Tetris extends JFrame implements GGActListener {
         gameGrid1.addActor(currentBlock, new Location(6, 0));
         gameGrid1.doRun();
         gameGrid1.requestFocus();
-        roundNum++;
         score = 0;
+        // Update statistics
+        stats.score = score;
+        stats.round++;
         showScore(score);
     }
 
