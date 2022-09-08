@@ -304,7 +304,7 @@ public class Tetris extends JFrame implements GGActListener {
 
     }
 
-    public void gameOver() {
+    void gameOver() {
         gameGrid1.addActor(new Actor("sprites/gameover.gif"), new Location(5, 5));
         gameGrid1.doPause();
         newRound = true;
@@ -316,89 +316,6 @@ public class Tetris extends JFrame implements GGActListener {
         }
     }
 
-<<<<<<< Updated upstream
-=======
-    private void printToFile()
-    {
-        // Record difficulty level
-        String difficultyText = "";
-        if(Objects.equals(difficulty, "easy")){
-            difficultyText = "Easy";
-        }else if(Objects.equals(difficulty, "medium")){
-            difficultyText = "Medium";
-        }else{
-            difficultyText = "Madness";
-        }
-
-        FileWriter fw = null;
-        try {
-            // When a new game started, clear the old file if already exist
-            if(roundNum == 1)
-            {
-                fw = new FileWriter("Statistics.txt", false);
-            }
-            fw = new FileWriter("Statistics.txt", true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        BufferedWriter bw = new BufferedWriter(fw);
-        PrintWriter out = new PrintWriter(bw);
-
-        ArrayList<String> keys = new ArrayList<String>();
-        if(roundNum == 1)
-        {
-            out.println("Difficulty: " + difficultyText);
-            out.println("Average score per round: " + averageScore);
-        }
-
-        // Statistics recording for each round of game
-        out.println("------------------------------------------             ");
-        out.println("Round #" + roundNum);
-        out.println("Score: " + score);
-
-        // Write shape count to statistics in ascending order
-        for(String key : blockRecord.keySet())
-        {
-            keys.add(key);
-        }
-        Collections.sort(keys);
-        for(String key : keys)
-        {
-            out.println(key + ": " + blockRecord.get(key));
-        }
-        out.close();
-
-        // Read everything in statistics and change average score if necessary
-        String data = "";
-        String line = "";
-        int count = 1;
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("Statistics.txt"));
-            while((line = br.readLine()) != null) {
-                // Change average score when more than one round had been played
-                if(count == 2 && roundNum > 1)
-                {
-                    line = "Average score per round: " + averageScore;
-                }
-                data += line + "\n";
-                count++;
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Write edited data to statistics file
-        try {
-            BufferedWriter output = new BufferedWriter(new FileWriter("Statistics.txt"));
-            output.write(data);
-            output.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
->>>>>>> Stashed changes
 
     // Start a new game
     public void startBtnActionPerformed(java.awt.event.ActionEvent evt) {
