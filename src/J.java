@@ -7,7 +7,7 @@ import ch.aplu.jgamegrid.Location;
  * @Date 2022 2022/8/30
  * @Version 1.0
  */
-class J extends Block
+public class J extends Block
 {
   private final int blockId = 1;
   private final String blockName = "J";
@@ -15,7 +15,7 @@ class J extends Block
   private Location[][] r = new Location[4][4];
   private int rotId = 0;
 
-  J(Tetris tetris)
+  public J(Tetris tetris)
   {
     super();
 

@@ -95,7 +95,7 @@ public abstract class Block extends Actor {
         }
     }
 
-    void display(GameGrid gg, Location location) {
+    public void display(GameGrid gg, Location location) {
         for (TetroBlock a : blocks) {
             Location loc =
                     new Location(location.x + a.getRelLoc(0).x, location.y + a.getRelLoc(0).y);
@@ -104,21 +104,21 @@ public abstract class Block extends Actor {
     }
 
     // Actual actions on the block: move the block left, right, drop and rotate the block
-    void left() {
+    public void left() {
         if (isStarting)
             return;
         setDirection(180);
         advance();
     }
 
-    void right() {
+    public void right() {
         if (isStarting)
             return;
         setDirection(0);
         advance();
     }
 
-    void rotate() {
+    public void rotate() {
         if (isStarting)
             return;
 
@@ -154,7 +154,7 @@ public abstract class Block extends Actor {
         return true;
     }
 
-    void drop() {
+    public void drop() {
         if (isStarting)
             return;
         setSlowDown(0);

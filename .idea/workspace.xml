@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8908a44-f714-44b5-b31a-26e9f3ea11bf" name="Changes" comment="add scripts">
-      <change beforePath="$PROJECT_DIR$/src/StatsRecorder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StatsRecorder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Block.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/I.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/I.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/J.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/J.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/L.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/L.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/O.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/O.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/P.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/P.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Q.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Q.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/S.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/S.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/T.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/T.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Z.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Z.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
