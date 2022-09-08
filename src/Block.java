@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @Date 2022 2022/8/30
  * @Version 1.0
  */
-public abstract class Parent extends Actor {
+public abstract class Block extends Actor {
 
 //    private Location[][] r = new Location[4][4];
     protected Tetris tetris;

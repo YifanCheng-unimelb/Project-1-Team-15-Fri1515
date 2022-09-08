@@ -39,7 +39,7 @@ public class StatsRecorder {
         blockRecord.put("+", 0);
     }
 
-    void printToFile()
+    public void printToFile()
     {
         // Record difficulty level
         String difficultyText = "";

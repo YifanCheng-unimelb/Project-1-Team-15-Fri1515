@@ -7,7 +7,7 @@ import ch.aplu.jgamegrid.Location;
  * @Date 2022 2022/8/30
  * @Version 1.0
  */
-class I extends Parent
+class I extends Block
 {
   private final int blockId = 0;
   private final String blockName = "I";

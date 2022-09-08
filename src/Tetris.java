@@ -36,7 +36,6 @@ public class Tetris extends JFrame implements GGActListener {
     private String[] blockActions = new String[10];
     //用于存储当前方块的变量
     private int blockActionIndex = 0;
-    private Parent shapes;
     //private GameLevel gameLevel;
 
     private String difficulty;
@@ -237,17 +236,17 @@ public class Tetris extends JFrame implements GGActListener {
         switch (keyEvent) {
             case KeyEvent.VK_UP:
                 if (!"madness".equals(this.difficulty)) {
-                    ((Parent) currentBlock).rotate();
+                    ((Block) currentBlock).rotate();
                 }
                 break;
             case KeyEvent.VK_LEFT:
-                ((Parent) currentBlock).left();
+                ((Block) currentBlock).left();
                 break;
             case KeyEvent.VK_RIGHT:
-                ((Parent) currentBlock).right();
+                ((Block) currentBlock).right();
                 break;
             case KeyEvent.VK_DOWN:
-                ((Parent) currentBlock).drop();
+                ((Block) currentBlock).drop();
                 break;
             default:
                 break;

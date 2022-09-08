@@ -7,7 +7,7 @@ import ch.aplu.jgamegrid.Location;
  * @Date 2022 2022/8/30
  * @Version 1.0
  */
-class L extends Parent
+class L extends Block
 {
   private final int blockId = 2;
   private Location[][] r = new Location[4][4];
