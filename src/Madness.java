@@ -20,4 +20,11 @@ public class Madness extends Tetris{
         System.out.println(madSpeed);
         return madSpeed;
     }
+
+    public static Boolean disableRotation(String difficulty){
+        if("madness".equals(difficulty)){
+            return true;
+        }
+        return false;
+    }
 }

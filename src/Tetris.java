@@ -235,7 +235,7 @@ public class Tetris extends JFrame implements GGActListener {
     private void moveBlock(int keyEvent) {
         switch (keyEvent) {
             case KeyEvent.VK_UP:
-                if (!"madness".equals(this.difficulty)) {
+                if (!Madness.disableRotation(this.difficulty)) {
                     ((Block) currentBlock).rotate();
                 }
                 break;
