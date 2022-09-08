@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8908a44-f714-44b5-b31a-26e9f3ea11bf" name="Changes" comment="change test1.difficulty as default level">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/I.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/I.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/J.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/J.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/L.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/L.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Madness.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Madness.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Medium.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Medium.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/O.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/O.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/P.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/P.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Parent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Parent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Plus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Plus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Q.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Q.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/S.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/S.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/T.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/T.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tetris.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tetris.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TetrisShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TetrisShape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Z.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Z.java" afterDir="false" />
-    </list>
+    <list default="true" id="b8908a44-f714-44b5-b31a-26e9f3ea11bf" name="Changes" comment="add scripts" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,13 +34,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Unimelb/OneDrive - 3yndv8/桌面/new&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/Unimelb/OneDrive - 3yndv8/桌面"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Driver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="src.Driver" />
@@ -94,7 +77,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662615853636</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add scripts">
+      <created>1662617124740</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1662617124740</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -110,6 +100,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="change test1.difficulty as default level" />
-    <option name="LAST_COMMIT_MESSAGE" value="change test1.difficulty as default level" />
+    <MESSAGE value="add scripts" />
+    <option name="LAST_COMMIT_MESSAGE" value="add scripts" />
   </component>
 </project>
