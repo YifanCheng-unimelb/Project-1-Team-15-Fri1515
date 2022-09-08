@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8908a44-f714-44b5-b31a-26e9f3ea11bf" name="Changes" comment="add scripts">
-      <change afterPath="$PROJECT_DIR$/src/StatsRecorder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Statistics.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Statistics.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/SWEN30006_22B_Project1_spec/Statistics.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SWEN30006_22B_Project1_spec/Statistics.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SWEN30006_22B_Project1_spec/properties/test2.properties" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SWEN30006_22B_Project1_spec/properties/test2.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tetris.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tetris.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,22 +53,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="SWEN30006_22B_Project1_spec" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="SWEN30006_22B_Project1_spec" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.Driver" />
+        <item itemvalue="Application.Driver" />
       </list>
     </recent_temporary>
   </component>

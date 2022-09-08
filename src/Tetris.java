@@ -86,7 +86,7 @@ public class Tetris extends JFrame implements GGActListener {
     }
 
     // create a block and assign to a preview mode  随机生成7个shape block
-    Actor createRandomTetrisBlock() {
+    public Actor createRandomTetrisBlock() {
         if (blockPreview != null)
             blockPreview.removeSelf();
 
@@ -304,7 +304,7 @@ public class Tetris extends JFrame implements GGActListener {
 
     }
 
-    void gameOver() {
+    public void gameOver() {
         gameGrid1.addActor(new Actor("sprites/gameover.gif"), new Location(5, 5));
         gameGrid1.doPause();
         newRound = true;
