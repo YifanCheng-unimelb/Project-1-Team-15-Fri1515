@@ -5,7 +5,11 @@ import ch.aplu.jgamegrid.GameGrid;
 import ch.aplu.jgamegrid.Location;
 
 import java.util.ArrayList;
-
+/**
+ * @Author Group 15 - Mingyue Jiang, Yutong CHEN, Yifan Cheng
+ * @Date 2022 2022/9/4
+ * @Version 3.0
+ */
 public abstract class TetrisShape extends Actor {
 
     protected String blockName;

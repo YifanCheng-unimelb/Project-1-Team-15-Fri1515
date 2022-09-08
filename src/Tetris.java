@@ -12,9 +12,9 @@ import java.util.*;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 /**
- * @Author Mingyue Jiang, Yutong CHEN, Yifan Cheng
- * @Date 2022 2022/8/30
- * @Version 1.0
+ * @Author Group 15 - Mingyue Jiang, Yutong CHEN, Yifan Cheng
+ * @Date 2022 2022/9/8
+ * @Version 3.0
  */
 //俄罗斯方块主类
 public class Tetris extends JFrame implements GGActListener {

@@ -3,8 +3,8 @@ package src;
 import java.util.Properties;
 import java.util.concurrent.ThreadLocalRandom;
 /**
- * @Author Mingyue Jiang, Yutong CHEN, Yifan Cheng
- * @Date 2022 2022/8/30
+ * @Author Group 15 - Mingyue Jiang, Yutong CHEN, Yifan Cheng
+ * @Date 2022 2022/9/2
  * @Version 1.0
  */
 
