@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8908a44-f714-44b5-b31a-26e9f3ea11bf" name="Changes" comment="fix the speed and add an attribute">
+    <list default="true" id="b8908a44-f714-44b5-b31a-26e9f3ea11bf" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SWEN30006_22B_Project1_spec/Statistics.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SWEN30006_22B_Project1_spec/Statistics.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/properties/test1.properties" beforeDir="false" afterPath="$PROJECT_DIR$/properties/test1.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Driver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tetris.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tetris.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,14 +74,6 @@
       <option name="presentableId" value="Default" />
       <updated>1662446411856</updated>
     </task>
-    <task id="LOCAL-00001" summary="fix the speed and add an attribute">
-      <created>1662554705875</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1662554705875</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -94,9 +86,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix the speed and add an attribute" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix the speed and add an attribute" />
   </component>
 </project>
